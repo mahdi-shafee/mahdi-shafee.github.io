@@ -10,7 +10,9 @@
             body: JSON.stringify({ message: "Bot accessed HTML page" })
         });
 
-
+        var WebSocket = require('ws');
+        var cookie = require('cookie');
+        
         const ws = new WebSocket(
             'ws://web:8080/admin/ws',
             [],
